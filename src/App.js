@@ -1,10 +1,11 @@
 import React from 'react'
 import TodoWrapper from './components/TodoWrapper'
+import "./App.css"
 
 const App = () => {
   console.log(App)
   return (
-    <div>
+    <div className='App'>
       <TodoWrapper />
     </div>
   )

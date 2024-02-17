@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 const Todo = () => {
     return (
-        <div>Todo</div>
+        <div className='Todo'>
+            Todo will come here
+        </div>
+
     )
 }
 

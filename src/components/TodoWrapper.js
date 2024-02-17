@@ -3,7 +3,8 @@ import Todo from './Todo'
 
 const TodoWrapper = () => {
     return (
-        <div>
+        <div className='TodoWrapper'>
+            <h1>Get Things Done !</h1>
             <Todo />
         </div>
     )
