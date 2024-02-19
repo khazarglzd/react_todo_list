@@ -10,15 +10,18 @@ const TodoWrapper = () => {
         setTodos([...todos, { id: Math.random(), completed: false, isEditing: false, task: todo }])
 
     }
-    console.log(todos)
+
+    const toggleComplete = id => {
+        setTodos(todos.map(todo => todo.id === id ? { ...todo, completed: !todo.completed } : todo))
+    }
 
     return (
         <div className='TodoWrapper'>
-            <h1>Get Things Done !</h1>
+            <h1>My Todos</h1>
             <TodoForm addTodo={addTodo} />
             {todos.map((todo, index) => {
                 return (
-                    <Todo task={todo} key={index} />
+                    <Todo task={todo} key={index} toggleComplete={toggleComplete} />
                 )
             })}
         </div>
