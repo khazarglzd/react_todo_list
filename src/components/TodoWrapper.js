@@ -35,11 +35,13 @@ const TodoWrapper = () => {
         );
     };
 
+    console.log(todos.length)
+
     return (
         <div className="TodoWrapper">
-            <h1>My Todos!</h1>
+            <h1>My Todo List!</h1>
             <TodoForm addTodo={addTodo} />
-            {todos.map((todo) =>
+            {todos.length > 0 ? todos.map((todo) =>
                 todo.isEditing ? (
                     <EditTodoForm editTodo={editTask} task={todo} />
                 ) : (
@@ -51,7 +53,7 @@ const TodoWrapper = () => {
                         toggleComplete={toggleComplete}
                     />
                 )
-            )}
+            ) : <h4> There are no todos for to do today :)</h4>}
         </div>
     );
 };
