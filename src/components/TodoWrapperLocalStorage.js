@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Todo from './Todo'
 import TodoForm from './TodoForm'
 import { EditTodoForm } from './EditTodoForm';
@@ -7,16 +7,30 @@ const TodoWrapper = () => {
 
     const [todos, setTodos] = useState([])
 
+
+    useEffect(() => {
+        const savedTodos = JSON.parse(localStorage.getItem('todos')) || [];
+        setTodos(savedTodos);
+    }, []);
+
     const addTodo = (todo) => {
-        setTodos([...todos, { id: Math.random(), completed: false, isEditing: false, task: todo }])
+        const newTodos = ([...todos, { id: Math.random(), completed: false, isEditing: false, task: todo }])
+        setTodos(newTodos);
+        localStorage.setItem('todos', JSON.stringify(newTodos));
 
     }
 
     const toggleComplete = id => {
-        setTodos(todos.map(todo => todo.id === id ? { ...todo, completed: !todo.completed } : todo))
+        const newTodos = (todos.map(todo => todo.id === id ? { ...todo, completed: !todo.completed } : todo))
+        setTodos(newTodos);
+        localStorage.setItem('todos', JSON.stringify(newTodos));
     }
 
-    const deleteTodo = (id) => setTodos(todos.filter((todo) => todo.id !== id));
+    const deleteTodo = (id) => {
+        const newTodos = (todos.filter((todo) => todo.id !== id))
+        setTodos(newTodos);
+        localStorage.setItem('todos', JSON.stringify(newTodos));
+    };
 
 
     const editTodo = (id) => {
@@ -28,11 +42,13 @@ const TodoWrapper = () => {
     }
 
     const editTask = (task, id) => {
-        setTodos(
+        const newTodos = (
             todos.map((todo) =>
                 todo.id === id ? { ...todo, task, isEditing: !todo.isEditing } : todo
             )
         );
+        setTodos(newTodos);
+        localStorage.setItem('todos', JSON.stringify(newTodos));
     };
 
     console.log(todos.length)
