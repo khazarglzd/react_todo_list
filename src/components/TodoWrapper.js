@@ -14,7 +14,7 @@ const TodoWrapper = () => {
     }, []);
 
     const addTodo = (todo) => {
-        const newTodos = ([...todos, { id: Math.random(), completed: false, isEditing: false, task: todo }])
+        const newTodos = ([{ id: Math.random(), completed: false, isEditing: false, task: todo }, ...todos])
         setTodos(newTodos);
         localStorage.setItem('todos', JSON.stringify(newTodos));
 
@@ -51,11 +51,10 @@ const TodoWrapper = () => {
         localStorage.setItem('todos', JSON.stringify(newTodos));
     };
 
-    console.log(todos.length)
 
     return (
         <div className="TodoWrapper">
-            <h1>My Todo List!</h1>
+            <h1>My Todo List</h1>
             <TodoForm addTodo={addTodo} />
             {todos.length > 0 ? todos.map((todo) =>
                 todo.isEditing ? (
@@ -67,6 +66,7 @@ const TodoWrapper = () => {
                         deleteTodo={deleteTodo}
                         editTodo={editTodo}
                         toggleComplete={toggleComplete}
+                        addTodo={addTodo}
                     />
                 )
             ) : <h4> There are no todos for to do today :)</h4>}

@@ -1,11 +1,11 @@
 import React from 'react'
-import TodoWrapperLocalStorage from './components/TodoWrapperLocalStorage'
+import TodoWrapper from './components/TodoWrapper'
 import "./App.css"
 
 const App = () => {
   return (
     <div className='App'>
-      <TodoWrapperLocalStorage />
+      <TodoWrapper />
     </div>
   )
 }
